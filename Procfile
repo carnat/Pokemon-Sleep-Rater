@@ -1,1 +1,1 @@
-worker: python bot.py
+gunicorn = gunicorn -w 3 bot.py:app
