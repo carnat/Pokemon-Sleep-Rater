@@ -2,10 +2,12 @@ import discord
 import os
 from pokemon_db import db
 from dotenv import load_dotenv
+load_dotenv()
+TOKEN = os.getenv('DISCORD_TOKEN')
 from pokemon import RatePokemon
 from ocr import detect_text_uri
 
-load_dotenv()
+
 bot = discord.Bot()
 
 
