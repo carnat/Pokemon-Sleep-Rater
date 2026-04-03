@@ -35,15 +35,26 @@ def connect_with_connector() -> sqlalchemy.engine.base.Engine:
     return pool
 
 
-def subskills_to_string(results):
+def subskills_to_string(results, locked_skills=None):
+    # Subskills are detected in column-reading order (Lv.10, Lv.50, Lv.100, Lv.25, Lv.75).
+    # The order array remaps detection indices to ascending display order.
     order = [0, 3, 1, 4, 2]
     prefixes = ["[Lv. 10]", "[Lv. 25]", "[Lv. 50]", "[Lv. 75]", "[Lv. 100]"]
+
+    if locked_skills is None:
+        locked_skills = set()
 
     keys_list = list(results)
     formatted_output = []
 
     for i, idx in enumerate(order):
+        if idx >= len(keys_list):
+            continue
         key = keys_list[idx]
-        formatted_output.append(f'{prefixes[i]} {key}: {results[key]}')
+        if key in locked_skills:
+            score_str = "🔒 not yet unlocked"
+        else:
+            score_str = str(results[key])
+        formatted_output.append(f'{prefixes[i]} {key}: {score_str}')
 
     return '\n'.join(formatted_output)
