@@ -1,11 +1,20 @@
 # Pokémon Sleep Rater
-A multi-platform bot (Discord + Telegram) that rates Pokémon from Pokémon Sleep! Upload a screenshot containing the Pokémon's name (no nicknames), nature, and subskills. The bot may fail if a screenshot is unclear or if too many requests are made at once.
+A multi-platform bot (Discord, Telegram, and MCP) that rates Pokémon from Pokémon Sleep! Upload a screenshot containing the Pokémon's name (no nicknames), nature, and subskills. The bot may fail if a screenshot is unclear or if too many requests are made at once.
 
 <p align="center">Example Output:</p>
 
 <p align="center">
   <img src="https://i.imgur.com/dSDM6rh.png">
 </p>
+
+## Architecture
+
+The project provides two implementations of the same rating engine:
+
+- **Python** — standalone Discord and Telegram bots, run locally or on a cloud VM.
+- **Cloudflare Worker (TypeScript)** — a single serverless deployment that serves Discord (Interactions endpoint), Telegram (webhook), and an MCP server over HTTP.
+
+Both share the same scoring data, grading logic, and Google Cloud Vision OCR integration.
 
 ## How to Use
 
@@ -25,15 +34,82 @@ Send a photo to the bot with the caption `/rateps`. You can also include an opti
 /rateps 35
 ```
 
+You can also send a photo first and then reply to it with `/rateps`.
+
+### MCP (Model Context Protocol)
+The Cloudflare Worker exposes an MCP endpoint at `POST /mcp` that speaks JSON-RPC 2.0. AI assistants and other MCP-compatible clients can call the following tools:
+
+| Tool | Description |
+|------|-------------|
+| `rate_pokemon_from_url` | Rate a Pokémon by providing a screenshot URL (uses OCR). Accepts an optional `level`. |
+| `rate_pokemon_manual` | Rate a Pokémon by providing `name`, `nature`, and `skills` directly (no screenshot needed). Accepts an optional `level`. |
+| `list_pokemon` | List all supported Pokémon, optionally filtered by `specialty` (Berries, Ingredients, or Skills). |
+| `get_pokemon_info` | Get a Pokémon's specialty, base helping frequency, and estimated helps per day. |
+
 ## Self-Hosting Setup
 
-### Prerequisites
+### Option A — Cloudflare Worker (recommended)
+
+The worker handles Discord, Telegram, and MCP from a single deployment.
+
+#### Prerequisites
+
+- Node.js 22+
+- A [Cloudflare](https://dash.cloudflare.com/) account
+- A [Google Cloud Vision API](https://cloud.google.com/vision/docs/setup) key (used for OCR)
+- A Discord application and/or a Telegram bot token
+
+#### 1. Install Dependencies
+
+```bash
+cd worker
+npm ci
+```
+
+#### 2. Configure Secrets
+
+Add the following secrets to your Cloudflare Worker (via the dashboard or `wrangler secret put`):
+
+| Secret | Required for |
+|--------|-------------|
+| `DISCORD_PUBLIC_KEY` | Discord — Ed25519 signature verification |
+| `DISCORD_APPLICATION_ID` | Discord — follow-up messages |
+| `TELEGRAM_BOT_TOKEN` | Telegram |
+| `GOOGLE_CLOUD_API_KEY` | OCR (all platforms) |
+
+#### 3. Deploy
+
+```bash
+npx wrangler deploy
+```
+
+The worker auto-deploys on push to `main` (when files in `worker/` change) via the GitHub Actions workflow.
+
+#### 4. Set Up Webhooks
+
+- **Discord:** In the [Discord Developer Portal](https://discord.com/developers/applications), set the Interactions Endpoint URL to `https://<worker-url>/discord`.
+- **Telegram:** Register the webhook with `https://api.telegram.org/bot<TOKEN>/setWebhook?url=https://<worker-url>/telegram/webhook`.
+
+#### Worker Endpoints
+
+| Method | Path | Purpose |
+|--------|------|---------|
+| `GET` | `/` or `/health` | Health check |
+| `POST` | `/discord` | Discord Interactions webhook |
+| `POST` | `/telegram/webhook` | Telegram Bot webhook |
+| `POST` | `/mcp` | MCP JSON-RPC 2.0 server |
+
+### Option B — Python Bots (standalone)
+
+Run the Discord and/or Telegram bots as long-running processes.
+
+#### Prerequisites
 
 - Python 3.11+
 - A [Google Cloud Vision API](https://cloud.google.com/vision/docs/setup) service account with credentials (used for OCR)
 - A Discord bot token and/or a Telegram bot token
 
-### 1. Clone and Install Dependencies
+#### 1. Clone and Install Dependencies
 
 ```bash
 git clone https://github.com/carnat/Pokemon-Sleep-Rater.git
@@ -41,7 +117,7 @@ cd Pokemon-Sleep-Rater
 pip install -r requirements.txt
 ```
 
-### 2. Configure Environment Variables
+#### 2. Configure Environment Variables
 
 Create a `.env` file in the project root with the following variables:
 
@@ -53,7 +129,7 @@ BOT_TOKEN=your_discord_bot_token
 TELEGRAM_BOT_TOKEN=your_telegram_bot_token
 ```
 
-### 3. Discord Bot Setup
+#### 3. Discord Bot Setup
 
 1. Go to the [Discord Developer Portal](https://discord.com/developers/applications) and click **New Application**.
 2. Under the **Bot** tab, copy the bot token (click **Reset Token** if the token is no longer visible). Paste it as `BOT_TOKEN` in your `.env` file.
@@ -64,7 +140,7 @@ TELEGRAM_BOT_TOKEN=your_telegram_bot_token
 python bot.py
 ```
 
-### 4. Telegram Bot Setup
+#### 4. Telegram Bot Setup
 
 1. Open Telegram and search for [@BotFather](https://t.me/BotFather).
 2. Send `/newbot` and follow the prompts to choose a name and username for your bot.
@@ -135,3 +211,8 @@ The grading scale as well as the values of each subskill and nature are subjecti
   - Added all-specialty score display
   - Added production estimate (helps per day)
   - Added Telegram bot support
+- v1.3 Update
+  - Migrated to Cloudflare Worker (TypeScript) for serverless deployment
+  - Added MCP (Model Context Protocol) server with four tools
+  - Unified Discord and Telegram behind a single HTTP worker
+  - Added GitHub Actions CI/CD for automatic worker deployment
