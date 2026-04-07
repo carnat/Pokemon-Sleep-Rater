@@ -10,7 +10,9 @@
  * Setup:
  *   1. Create a Discord application at https://discord.com/developers
  *   2. Set the Interactions Endpoint URL to https://<worker>/discord
- *   3. Register the /rateps slash command via the Discord API
+ *   3. Add DISCORD_APPLICATION_ID and DISCORD_BOT_TOKEN as GitHub secrets, then
+ *      push to master (or trigger the "Register Discord Slash Commands" workflow
+ *      manually) — registration runs automatically via GitHub Actions.
  *   4. Store DISCORD_PUBLIC_KEY and GOOGLE_CLOUD_API_KEY as Cloudflare secrets
  */
 
