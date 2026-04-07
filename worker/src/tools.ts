@@ -1,30 +1,22 @@
 /**
  * MCP tool definitions and dispatcher for Pokémon Sleep Rater.
  *
- * Exposes four tools:
- *   1. rate_pokemon_from_url  — Rate a Pokémon from a screenshot URL (OCR)
- *   2. rate_pokemon_manual    — Rate a Pokémon by providing data directly
- *   3. list_pokemon           — List supported Pokémon
- *   4. get_pokemon_info       — Get info about a specific Pokémon
+ * Pure-computation tools — no external API calls, no secrets required.
+ * The LLM reads screenshots natively and calls rate_pokemon with extracted data.
+ *
+ * Exposes three tools:
+ *   1. rate_pokemon    — Rate a Pokémon by providing data directly
+ *   2. list_pokemon    — List supported Pokémon
+ *   3. get_pokemon_info — Get info about a specific Pokémon
  */
 
-import { detectTextUri } from "./ocr.js";
 import {
   ratePokemon,
-  ratePokemonFromOcr,
   listPokemon,
   getPokemonInfo,
 } from "./rating-engine.js";
 import type { RatingResult } from "./rating-engine.js";
 import { subskillsToString } from "./formatting.js";
-
-// ---------------------------------------------------------------------------
-// Env
-// ---------------------------------------------------------------------------
-
-export interface ToolEnv {
-  GOOGLE_CLOUD_API_KEY: string;
-}
 
 // ---------------------------------------------------------------------------
 // Tool definitions (MCP spec format)
@@ -42,34 +34,28 @@ export interface Tool {
 
 export const TOOLS: Tool[] = [
   {
-    name: "rate_pokemon_from_url",
+    name: "rate_pokemon",
     description:
-      "Rate a Pokémon Sleep screenshot by providing its image URL. " +
-      "Uses Google Cloud Vision OCR to extract the Pokémon's name, nature, and subskills, " +
-      "then computes a rating grade (F through S), percentile, and production estimate.",
-    inputSchema: {
-      type: "object",
-      properties: {
-        image_url: {
-          type: "string",
-          description: "Public URL of the Pokémon Sleep screenshot image",
-        },
-        level: {
-          type: "number",
-          description:
-            "Optional: Pokémon's current level (enables level-aware scoring — " +
-            "subskills not yet unlocked are excluded)",
-        },
-      },
-      required: ["image_url"],
-    },
-  },
-  {
-    name: "rate_pokemon_manual",
-    description:
-      "Rate a Pokémon by providing its name, nature, and subskills directly " +
-      "(no screenshot needed). Returns grade, percentile, all-specialty scores, " +
-      "and production estimate.",
+      "Rate a Pokémon from Pokémon Sleep. If the user provides a screenshot, " +
+      "read the Pokémon's name, nature, and subskills from the image yourself, " +
+      "then call this tool with the extracted data.\n\n" +
+      "Subskills appear in a two-column grid on the Pokémon's detail screen:\n" +
+      "  Column 1: Lv.10 (top), Lv.50 (middle), Lv.100 (bottom)\n" +
+      "  Column 2: Lv.25 (top), Lv.75 (bottom)\n" +
+      "Provide them in reading order: Lv.10, Lv.50, Lv.100, Lv.25, Lv.75.\n\n" +
+      "Valid subskill names: Berry Finding S, Dream Shard Bonus, " +
+      "Energy Recovery Bonus, Energy Recovery S, Energy Recovery M, " +
+      "Helping Bonus, Helping Speed S, Helping Speed M, " +
+      "Ingredient Finder S, Ingredient Finder M, " +
+      "Inventory Up S, Inventory Up M, Inventory Up L, " +
+      "Research EXP Bonus, Skill Level Up S, Skill Level Up M, " +
+      "Skill Trigger S, Skill Trigger M, Sleep EXP Bonus.\n\n" +
+      "Valid natures: Hardy, Lonely, Brave, Adamant, Naughty, Bold, Docile, " +
+      "Relaxed, Impish, Lax, Timid, Hasty, Serious, Jolly, Naive, Modest, " +
+      "Mild, Quiet, Bashful, Rash, Calm, Gentle, Sassy, Careful, Quirky.\n\n" +
+      "Rating scale: F (≤11) → D (≤14) → C (≤17) → B (≤20) → A (≤23) → S (>23). " +
+      "Each Pokémon has a primary specialty (Berries, Ingredients, or Skills) " +
+      "and is scored across all three with a percentile ranking.",
     inputSchema: {
       type: "object",
       properties: {
@@ -85,13 +71,15 @@ export const TOOLS: Tool[] = [
           type: "array",
           items: { type: "string" },
           description:
-            "Array of subskill names in OCR detection order " +
+            "Array of subskill names in column-reading order " +
             "(Lv.10, Lv.50, Lv.100, Lv.25, Lv.75), e.g. " +
             "['Energy Recovery Bonus', 'Inventory Up S', 'Helping Speed M']",
         },
         level: {
           type: "number",
-          description: "Optional: Pokémon's current level for level-aware scoring",
+          description:
+            "Optional: Pokémon's current level (enables level-aware scoring — " +
+            "subskills not yet unlocked at the given level are excluded)",
         },
       },
       required: ["name", "nature", "subskills"],
@@ -158,34 +146,12 @@ function serialiseRating(result: RatingResult): string {
 const str = (v: unknown, fallback = ""): string =>
   typeof v === "string" ? v : fallback;
 
-export async function callTool(
+export function callTool(
   name: string,
   args: Record<string, unknown>,
-  env: ToolEnv
-): Promise<string> {
+): string {
   switch (name) {
-    case "rate_pokemon_from_url": {
-      const imageUrl = str(args.image_url);
-      if (!imageUrl) return "Error: image_url is required";
-
-      const level =
-        typeof args.level === "number" ? args.level : null;
-
-      const ocrResults = await detectTextUri(imageUrl, env.GOOGLE_CLOUD_API_KEY);
-      if (!ocrResults) return "Error: Could not read the image via OCR.";
-
-      const result = ratePokemonFromOcr(ocrResults, level);
-      if (!result) {
-        return (
-          "Error: Pokémon not found. The screenshot must show the " +
-          "Pokémon's name, nature, and subskills."
-        );
-      }
-
-      return serialiseRating(result);
-    }
-
-    case "rate_pokemon_manual": {
+    case "rate_pokemon": {
       const pokemonName = str(args.name);
       const nature = str(args.nature);
       const subskills = Array.isArray(args.subskills)
