@@ -4,7 +4,7 @@
  * Routes:
  *   POST /discord            →  Discord Interactions webhook
  *   POST /telegram/webhook   →  Telegram Bot webhook
- *   POST /mcp                →  MCP JSON-RPC endpoint (Streamable HTTP)
+ *   POST /mcp                →  MCP JSON-RPC endpoint (Streamable HTTP, no secrets)
  *   GET  / or /health        →  Health check
  *   OPTIONS *                →  CORS preflight
  *
@@ -12,7 +12,9 @@
  *   DISCORD_PUBLIC_KEY       — Discord application public key
  *   DISCORD_APPLICATION_ID   — Discord application ID
  *   TELEGRAM_BOT_TOKEN       — Telegram bot token from @BotFather
- *   GOOGLE_CLOUD_API_KEY     — Google Cloud API key (Vision API enabled)
+ *   GOOGLE_CLOUD_API_KEY     — Google Cloud API key (Vision API, used by bot routes only)
+ *
+ * The /mcp endpoint requires NO secrets — it is a pure-computation engine.
  */
 
 import { handleDiscord } from "./discord.js";
@@ -143,9 +145,7 @@ export default {
       }
 
       try {
-        const result = await handleMcp(body, {
-          GOOGLE_CLOUD_API_KEY: env.GOOGLE_CLOUD_API_KEY,
-        });
+        const result = await handleMcp(body);
 
         if (result === null) {
           return new Response(null, { status: 202, headers: CORS_HEADERS });

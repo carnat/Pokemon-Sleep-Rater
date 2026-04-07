@@ -1,6 +1,8 @@
 /**
  * MCP Streamable HTTP protocol handler (stateless, no sessions).
  *
+ * Pure-computation MCP server — no external API calls, no secrets required.
+ *
  * Implements the JSON-RPC 2.0 layer of the MCP spec:
  *   https://spec.modelcontextprotocol.io/specification/2024-11-05/
  *
@@ -8,7 +10,7 @@
  * Notifications (no `id` field) are accepted but produce no response body.
  */
 
-import { callTool, TOOLS, type ToolEnv } from "./tools.js";
+import { callTool, TOOLS } from "./tools.js";
 
 interface JsonRpcRequest {
   jsonrpc: "2.0";
@@ -37,23 +39,21 @@ const isNotification = (msg: McpMessage): msg is JsonRpcNotification =>
  */
 export async function handleMcp(
   body: unknown,
-  env: ToolEnv
 ): Promise<unknown> {
   if (Array.isArray(body)) {
     const results = await Promise.all(
-      (body as McpMessage[]).map((msg) => handleMessage(msg, env))
+      (body as McpMessage[]).map((msg) => handleMessage(msg))
     );
     const responses = results.filter((r) => r !== null);
     return responses.length > 0 ? responses : null;
   }
-  return handleMessage(body as McpMessage, env);
+  return handleMessage(body as McpMessage);
 }
 
 // ── Internal ─────────────────────────────────────────────────────────────────
 
 async function handleMessage(
   msg: McpMessage,
-  env: ToolEnv
 ): Promise<unknown> {
   if (isNotification(msg)) {
     return null;
@@ -61,7 +61,7 @@ async function handleMessage(
 
   const req = msg as JsonRpcRequest;
   try {
-    const result = await dispatch(req.method, req.params, env);
+    const result = await dispatch(req.method, req.params);
     return { jsonrpc: "2.0", id: req.id, result };
   } catch (e) {
     const code = (e as { code?: number }).code ?? -32603;
@@ -73,7 +73,6 @@ async function handleMessage(
 async function dispatch(
   method: string,
   params: unknown,
-  env: ToolEnv
 ): Promise<unknown> {
   switch (method) {
     case "initialize":
@@ -97,7 +96,7 @@ async function dispatch(
       if (!p?.name)
         throw Object.assign(new Error("Missing tool name"), { code: -32602 });
 
-      const text = await callTool(p.name, p.arguments ?? {}, env);
+      const text = callTool(p.name, p.arguments ?? {});
       return { content: [{ type: "text", text }] };
     }
 
