@@ -37,10 +37,13 @@ Send a photo to the bot with the caption `/rateps`. You can also include an opti
 You can also send a photo first and then reply to it with `/rateps`.
 
 ### MCP (Model Context Protocol)
-The Cloudflare Worker exposes an MCP endpoint at `POST /mcp` that speaks JSON-RPC 2.0. AI assistants and other MCP-compatible clients can call the following tools:
+The Cloudflare Worker exposes an MCP endpoint at `POST /mcp` that speaks JSON-RPC 2.0. It is a **pure-computation engine** — no OCR, no external API calls, no secrets required. When a user shares a screenshot, the AI assistant reads the Pokémon's name, nature, and subskills from the image natively, then calls `rate_pokemon` with the extracted data.
+
+AI assistants and other MCP-compatible clients can call the following tools:
 
 | Tool | Description |
 |------|-------------|
+
 | `rate_pokemon` | Rate a Pokémon by providing `name`, `nature`, and `subskills` directly. If the user provides a screenshot, the LLM reads it and passes the extracted data. Accepts an optional `level`. |
 | `list_pokemon` | List all supported Pokémon, optionally filtered by `specialty` (Berries, Ingredients, or Skills). |
 | `get_pokemon_info` | Get a Pokémon's specialty, base helping frequency, and estimated helps per day. |
@@ -224,12 +227,6 @@ The scale accounts for the varying min/max values of the three specialties: Berr
 The bot covers Pokémon from **Generation 1 through 6** as they appear in Pokémon Sleep.
 
 The grading scale as well as the values of each subskill and nature are subjective. Opinions, suggestions, or changes are welcome—whether regarding the bot or the code @ alfendi on Discord.
-
-# Links
-- SaintPebble's spreadsheet: [Link](https://docs.google.com/spreadsheets/d/1HSEzTWlboKHFOV7piqsk82E1Wapa9J-dQmOOdY8RNJY/edit?usp=sharing)
-- /u/drake8thecake's spreadsheet: [Link](https://www.reddit.com/r/PokemonSleep/comments/167tiuz/updated_pokemon_sleep_data_and_tier_list_incl/?rdt=39154)
-- /u/PigsInTrees's infographic: [Link](https://www.reddit.com/r/PokemonSleep/comments/15wkab7/pigs_made_a_nature_infograph/)
-- Discord Bot Invite: [Link](https://discord.com/oauth2/authorize?client_id=1148461688690069628&permissions=412317240384&scope=bot)
 
 # Change Log
 - v1.0 Released (9/9/23)
