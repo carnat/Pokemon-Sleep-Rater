@@ -55,6 +55,15 @@ export async function handleMcp(
 async function handleMessage(
   msg: McpMessage,
 ): Promise<unknown> {
+  // Guard against malformed batch items (null, primitives, etc.)
+  if (msg === null || typeof msg !== "object" || Array.isArray(msg)) {
+    return {
+      jsonrpc: "2.0",
+      id: null,
+      error: { code: -32600, message: "Invalid Request" },
+    };
+  }
+
   if (isNotification(msg)) {
     return null;
   }

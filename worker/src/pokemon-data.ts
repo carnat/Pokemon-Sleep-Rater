@@ -11,7 +11,7 @@
 
 export const POKEMON_SPECIALTIES: Record<string, string> = {
   // GEN 1
-  Bulbasaur: "Ingredients", Ivysaur: "Ingredients", Venasaur: "Ingredients",
+  Bulbasaur: "Ingredients", Ivysaur: "Ingredients", Venusaur: "Ingredients",
   Charmander: "Ingredients", Charmeleon: "Ingredients", Charizard: "Ingredients",
   Squirtle: "Ingredients", Wartortle: "Ingredients", Blastoise: "Ingredients",
   Caterpie: "Berries", Metapod: "Berries", Butterfree: "Berries",
@@ -169,7 +169,7 @@ export const SUBSKILLS: Record<string, [number, number, number]> = {
 
 export const BASE_FREQUENCIES: Record<string, number> = {
   // GEN 1
-  Bulbasaur: 4320, Ivysaur: 4320, Venasaur: 4320,
+  Bulbasaur: 4320, Ivysaur: 4320, Venusaur: 4320,
   Charmander: 4680, Charmeleon: 4680, Charizard: 4680,
   Squirtle: 4500, Wartortle: 4500, Blastoise: 4500,
   Caterpie: 3060, Metapod: 3060, Butterfree: 3060,

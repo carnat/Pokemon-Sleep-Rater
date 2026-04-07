@@ -41,8 +41,7 @@ The Cloudflare Worker exposes an MCP endpoint at `POST /mcp` that speaks JSON-RP
 
 | Tool | Description |
 |------|-------------|
-| `rate_pokemon_from_url` | Rate a Pokémon by providing a screenshot URL (uses OCR). Accepts an optional `level`. |
-| `rate_pokemon_manual` | Rate a Pokémon by providing `name`, `nature`, and `skills` directly (no screenshot needed). Accepts an optional `level`. |
+| `rate_pokemon` | Rate a Pokémon by providing `name`, `nature`, and `subskills` directly. If the user provides a screenshot, the LLM reads it and passes the extracted data. Accepts an optional `level`. |
 | `list_pokemon` | List all supported Pokémon, optionally filtered by `specialty` (Berries, Ingredients, or Skills). |
 | `get_pokemon_info` | Get a Pokémon's specialty, base helping frequency, and estimated helps per day. |
 
