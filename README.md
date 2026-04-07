@@ -77,13 +77,15 @@ Add the following secrets to your Cloudflare Worker (via the dashboard or `wrang
 | `TELEGRAM_BOT_TOKEN` | Telegram |
 | `GOOGLE_CLOUD_API_KEY` | OCR (all platforms) |
 
+> `DISCORD_BOT_TOKEN` is used only for slash command registration (step 5) and should be added as a **GitHub repository secret**, not a Cloudflare secret.
+
 #### 3. Deploy
 
 ```bash
 npx wrangler deploy
 ```
 
-The worker auto-deploys on push to `main` (when files in `worker/` change) via the GitHub Actions workflow.
+The worker auto-deploys on push to `master` (when files in `worker/` change) via the GitHub Actions workflow.
 
 #### 4. Create a Discord Application
 
@@ -94,36 +96,23 @@ The worker auto-deploys on push to `main` (when files in `worker/` change) via t
 
 #### 5. Register the `/rateps` Slash Command
 
-The Cloudflare Worker uses Discord's Interactions endpoint (no gateway), so the slash command must be registered once via the Discord HTTP API. Run the following `curl` command from your terminal, substituting your real values:
+The Cloudflare Worker uses Discord's Interactions endpoint (no gateway), so the slash command must be registered with Discord. This is handled **automatically** by the GitHub Actions workflow at `.github/workflows/register-discord-commands.yml`, which runs whenever `worker/src/discord.ts` or `worker/scripts/register-commands.mjs` changes on `master`, or can be triggered manually via **workflow_dispatch**.
+
+The workflow requires two GitHub repository secrets in addition to those listed in step 2:
+
+| Secret | Description |
+|--------|-------------|
+| `DISCORD_APPLICATION_ID` | Your Discord application / client ID |
+| `DISCORD_BOT_TOKEN` | Bot token from the Discord Developer Portal |
+
+To register commands **manually** from your local machine:
 
 ```bash
-curl -X POST \
-  https://discord.com/api/v10/applications/<YOUR_APPLICATION_ID>/commands \
-  -H "Authorization: Bot <YOUR_BOT_TOKEN>" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "name": "rateps",
-    "description": "Rate a Pokémon from a Pokémon Sleep screenshot.",
-    "options": [
-      {
-        "name": "image",
-        "description": "Screenshot showing the Pokémon name, nature, and subskills.",
-        "type": 11,
-        "required": true
-      },
-      {
-        "name": "level",
-        "description": "Current level of the Pokémon (excludes locked subskills from the score).",
-        "type": 4,
-        "required": false
-      }
-    ]
-  }'
+cd worker
+DISCORD_APPLICATION_ID=<YOUR_APPLICATION_ID> DISCORD_BOT_TOKEN=<YOUR_BOT_TOKEN> npm run register-commands
 ```
 
-> `type: 11` is `ATTACHMENT`, `type: 4` is `INTEGER`. You only need to run this once; the command will appear globally within an hour (or instantly for guild-scoped commands).
-
-To register as a **guild command** (instant, for testing), add `/guilds/<YOUR_GUILD_ID>` before `/commands` in the URL above.
+> The script uses a bulk `PUT` (idempotent) against the Discord HTTP API. Global commands appear within an hour; re-running the script at any time is safe.
 
 #### 6. Set Up Webhooks
 
