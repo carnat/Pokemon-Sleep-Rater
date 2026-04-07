@@ -85,9 +85,49 @@ npx wrangler deploy
 
 The worker auto-deploys on push to `main` (when files in `worker/` change) via the GitHub Actions workflow.
 
-#### 4. Set Up Webhooks
+#### 4. Create a Discord Application
 
-- **Discord:** In the [Discord Developer Portal](https://discord.com/developers/applications), set the Interactions Endpoint URL to `https://<worker-url>/discord`.
+1. Go to the [Discord Developer Portal](https://discord.com/developers/applications) and click **New Application**.
+2. Under the **General Information** tab, copy the **Application ID** and **Public Key**.
+   - Set `DISCORD_APPLICATION_ID` and `DISCORD_PUBLIC_KEY` as Cloudflare secrets (see step 2 above).
+3. Under **OAuth2 → URL Generator**, select the **bot** and **applications.commands** scopes, add the **Send Messages** and **Attach Files** bot permissions, then open the generated URL to invite the bot to your server.
+
+#### 5. Register the `/rateps` Slash Command
+
+The Cloudflare Worker uses Discord's Interactions endpoint (no gateway), so the slash command must be registered once via the Discord HTTP API. Run the following `curl` command from your terminal, substituting your real values:
+
+```bash
+curl -X POST \
+  https://discord.com/api/v10/applications/<YOUR_APPLICATION_ID>/commands \
+  -H "Authorization: Bot <YOUR_BOT_TOKEN>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "rateps",
+    "description": "Rate a Pokémon from a Pokémon Sleep screenshot.",
+    "options": [
+      {
+        "name": "image",
+        "description": "Screenshot showing the Pokémon name, nature, and subskills.",
+        "type": 11,
+        "required": true
+      },
+      {
+        "name": "level",
+        "description": "Current level of the Pokémon (excludes locked subskills from the score).",
+        "type": 4,
+        "required": false
+      }
+    ]
+  }'
+```
+
+> `type: 11` is `ATTACHMENT`, `type: 4` is `INTEGER`. You only need to run this once; the command will appear globally within an hour (or instantly for guild-scoped commands).
+
+To register as a **guild command** (instant, for testing), add `/guilds/<YOUR_GUILD_ID>` before `/commands` in the URL above.
+
+#### 6. Set Up Webhooks
+
+- **Discord:** In the [Discord Developer Portal](https://discord.com/developers/applications), go to your application → **General Information** → set the **Interactions Endpoint URL** to `https://<worker-url>/discord`. Discord will send a verification ping; the worker must respond correctly for the URL to be saved.
 - **Telegram:** Register the webhook with `https://api.telegram.org/bot<TOKEN>/setWebhook?url=https://<worker-url>/telegram/webhook`.
 
 #### Worker Endpoints
@@ -132,13 +172,15 @@ TELEGRAM_BOT_TOKEN=your_telegram_bot_token
 #### 3. Discord Bot Setup
 
 1. Go to the [Discord Developer Portal](https://discord.com/developers/applications) and click **New Application**.
-2. Under the **Bot** tab, copy the bot token (click **Reset Token** if the token is no longer visible). Paste it as `BOT_TOKEN` in your `.env` file.
-3. Under **OAuth2 → URL Generator**, select the **bot** scope and the permissions your bot needs (Send Messages, Attach Files, Use Slash Commands). Copy the generated URL and open it in your browser to invite the bot to your server.
+2. Under the **Bot** tab, click **Reset Token** to generate a token and copy it. Paste it as `BOT_TOKEN` in your `.env` file.
+3. Under **OAuth2 → URL Generator**, select the **bot** and **applications.commands** scopes and the **Send Messages** and **Attach Files** bot permissions. Copy the generated URL and open it in your browser to invite the bot to your server.
 4. Start the Discord bot:
 
 ```bash
 python bot.py
 ```
+
+> The bot uses [py-cord](https://docs.pycord.dev/) which automatically registers the `/rateps` slash command with Discord when it connects. No manual command registration is needed—just invite the bot and start it.
 
 #### 4. Telegram Bot Setup
 
