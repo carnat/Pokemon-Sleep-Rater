@@ -43,8 +43,9 @@ AI assistants and other MCP-compatible clients can call the following tools:
 
 | Tool | Description |
 |------|-------------|
-| `rate_pokemon` | Rate a Pokémon by providing `name`, `nature`, and `subskills` directly. Accepts an optional `level` for level-aware scoring. |
-| `list_pokemon` | List all supported Pokémon (Gen 1–6), optionally filtered by `specialty` (Berries, Ingredients, or Skills). |
+
+| `rate_pokemon` | Rate a Pokémon by providing `name`, `nature`, and `subskills` directly. If the user provides a screenshot, the LLM reads it and passes the extracted data. Accepts an optional `level`. |
+| `list_pokemon` | List all supported Pokémon, optionally filtered by `specialty` (Berries, Ingredients, or Skills). |
 | `get_pokemon_info` | Get a Pokémon's specialty, base helping frequency, and estimated helps per day. |
 
 ## Self-Hosting Setup
