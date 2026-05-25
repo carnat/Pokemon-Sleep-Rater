@@ -4,11 +4,23 @@ import os
 from pokemon_db import db
 from dotenv import load_dotenv
 from pokemon import RatePokemon
-from ocr import detect_text_uri
 
 load_dotenv()
 bot = discord.Bot()
 logger = logging.getLogger(__name__)
+
+# Select OCR backend based on environment variable.
+_OCR_BACKEND = os.getenv("OCR_BACKEND", "tesseract").lower()
+
+
+def _detect_text(image_url):
+    """Run OCR using the configured backend. Returns list of strings or None."""
+    if _OCR_BACKEND == "google":
+        from ocr import detect_text_uri
+        return detect_text_uri(image_url)
+    else:
+        from ocr_local import detect_text_uri_local
+        return detect_text_uri_local(image_url)
 
 
 @bot.event
@@ -26,7 +38,7 @@ async def rateps(
     if image:
         try:
             print(image)
-            result = RatePokemon().rate_pokemon(detect_text_uri(image.url), pokemon_level=level)
+            result = RatePokemon().rate_pokemon(_detect_text(image.url), pokemon_level=level)
             if not result:
                 await ctx.respond(
                     "Pokémon not found. Please check image upload (name, nature, and subskills) or try again.")
