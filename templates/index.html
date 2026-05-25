@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon Sleep Rater</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 8px;
+            font-size: 1.8em;
+            color: #fff;
+        }
+        .subtitle {
+            text-align: center;
+            color: #aaa;
+            margin-bottom: 30px;
+            font-size: 0.9em;
+        }
+        .upload-area {
+            border: 2px dashed #555;
+            border-radius: 12px;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: border-color 0.3s, background 0.3s;
+            margin-bottom: 20px;
+        }
+        .upload-area:hover, .upload-area.dragover {
+            border-color: #64b5f6;
+            background: rgba(100, 181, 246, 0.05);
+        }
+        .upload-area p { margin-bottom: 10px; }
+        .upload-area .icon { font-size: 3em; margin-bottom: 10px; }
+        input[type="file"] { display: none; }
+        .preview { max-width: 100%; max-height: 200px; margin-top: 10px; border-radius: 8px; }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid #444;
+            border-radius: 8px;
+            background: #1e1e2e;
+            color: #fff;
+            font-size: 1em;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: #4CAF50;
+            color: #fff;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .btn:hover { background: #388E3C; }
+        .btn:disabled { background: #555; cursor: not-allowed; }
+        .result {
+            margin-top: 30px;
+            background: #1e1e2e;
+            border-radius: 12px;
+            padding: 20px;
+            display: none;
+        }
+        .result.visible { display: block; }
+        .result h2 { margin-bottom: 16px; color: #81c784; }
+        .result .grade-badge {
+            font-size: 2em;
+            font-weight: bold;
+            text-align: center;
+            margin: 10px 0;
+        }
+        .result .section { margin-bottom: 14px; }
+        .result .section h3 { color: #90caf9; margin-bottom: 6px; font-size: 0.95em; }
+        .result .skill-line { padding: 2px 0; }
+        .result .locked { color: #888; }
+        .specialty-scores { display: flex; gap: 10px; flex-wrap: wrap; }
+        .specialty-card {
+            flex: 1;
+            min-width: 140px;
+            background: #2a2a3e;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+        }
+        .specialty-card.primary { border: 2px solid #ffd700; }
+        .specialty-card .score { font-size: 1.4em; font-weight: bold; }
+        .error {
+            margin-top: 20px;
+            padding: 14px;
+            background: #442222;
+            border-radius: 8px;
+            color: #ff8a80;
+            display: none;
+        }
+        .error.visible { display: block; }
+        .loading { display: none; text-align: center; margin-top: 20px; }
+        .loading.visible { display: block; }
+        .spinner {
+            display: inline-block;
+            width: 30px; height: 30px;
+            border: 3px solid #555;
+            border-top-color: #64b5f6;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌙 Pokémon Sleep Rater</h1>
+        <p class="subtitle">Upload a screenshot showing name, nature, and subskills</p>
+
+        <form id="rateForm" enctype="multipart/form-data">
+            <div class="upload-area" id="uploadArea">
+                <div class="icon">📷</div>
+                <p>Drop screenshot here or tap to select</p>
+                <img class="preview" id="preview" style="display:none" alt="Preview">
+            </div>
+            <input type="file" id="imageInput" name="image" accept="image/*">
+
+            <div class="form-group">
+                <label for="levelInput">Pokémon Level (optional)</label>
+                <input type="number" id="levelInput" name="level" min="1" max="100" placeholder="e.g. 35">
+            </div>
+
+            <button type="submit" class="btn" id="submitBtn" disabled>Rate My Pokémon</button>
+        </form>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p style="margin-top:10px">Analyzing screenshot...</p>
+        </div>
+
+        <div class="error" id="error"></div>
+
+        <div class="result" id="result">
+            <h2 id="resultTitle"></h2>
+            <div class="grade-badge" id="gradeBadge"></div>
+
+            <div class="section">
+                <h3>Subskills</h3>
+                <div id="skillsList"></div>
+            </div>
+
+            <div class="section">
+                <h3>Nature</h3>
+                <div id="natureInfo"></div>
+            </div>
+
+            <div class="section">
+                <h3>All Specialty Scores</h3>
+                <div class="specialty-scores" id="specialtyScores"></div>
+            </div>
+
+            <div class="section" id="productionSection" style="display:none">
+                <h3>Est. Production</h3>
+                <div id="productionInfo"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const uploadArea = document.getElementById('uploadArea');
+        const imageInput = document.getElementById('imageInput');
+        const preview = document.getElementById('preview');
+        const submitBtn = document.getElementById('submitBtn');
+        const form = document.getElementById('rateForm');
+        const loading = document.getElementById('loading');
+        const errorDiv = document.getElementById('error');
+        const resultDiv = document.getElementById('result');
+
+        // Click to upload
+        uploadArea.addEventListener('click', () => imageInput.click());
+
+        // Drag and drop
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+        uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('dragover'));
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            if (e.dataTransfer.files.length) {
+                imageInput.files = e.dataTransfer.files;
+                handleFileSelect();
+            }
+        });
+
+        imageInput.addEventListener('change', handleFileSelect);
+
+        function handleFileSelect() {
+            const file = imageInput.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+                submitBtn.disabled = false;
+            }
+        }
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            errorDiv.classList.remove('visible');
+            resultDiv.classList.remove('visible');
+            loading.classList.add('visible');
+            submitBtn.disabled = true;
+
+            const formData = new FormData();
+            formData.append('image', imageInput.files[0]);
+            const level = document.getElementById('levelInput').value;
+            if (level) formData.append('level', level);
+
+            try {
+                const res = await fetch('/rate', { method: 'POST', body: formData });
+                const data = await res.json();
+
+                if (!res.ok) {
+                    throw new Error(data.error || 'Unknown error');
+                }
+
+                displayResult(data);
+            } catch (err) {
+                errorDiv.textContent = err.message;
+                errorDiv.classList.add('visible');
+            } finally {
+                loading.classList.remove('visible');
+                submitBtn.disabled = false;
+            }
+        });
+
+        function displayResult(data) {
+            document.getElementById('resultTitle').textContent =
+                `${data.name} — ${data.final_grade_text}`;
+            document.getElementById('gradeBadge').textContent =
+                `Score: ${data.grade} (Top ${100 - data.percentile}%)`;
+
+            // Skills
+            const skillsList = document.getElementById('skillsList');
+            skillsList.innerHTML = '';
+            const levels = ['Lv. 10', 'Lv. 25', 'Lv. 50', 'Lv. 75', 'Lv. 100'];
+            // Remap detection order to display order
+            const order = [0, 3, 1, 4, 2];
+            const skillKeys = Object.keys(data.skills);
+            order.forEach((idx, i) => {
+                if (idx < skillKeys.length) {
+                    const skill = skillKeys[idx];
+                    const isLocked = data.locked_skills.includes(skill);
+                    const div = document.createElement('div');
+                    div.className = 'skill-line' + (isLocked ? ' locked' : '');
+                    div.textContent = isLocked
+                        ? `[${levels[i]}] ${skill}: 🔒 not yet unlocked`
+                        : `[${levels[i]}] ${skill}: ${data.skills[skill]}`;
+                    skillsList.appendChild(div);
+                }
+            });
+
+            // Nature
+            document.getElementById('natureInfo').textContent =
+                `${data.nature}: ${data.nature_rating}`;
+
+            // Specialty scores
+            const scoresDiv = document.getElementById('specialtyScores');
+            scoresDiv.innerHTML = '';
+            for (const [spec, specData] of Object.entries(data.all_scores)) {
+                const card = document.createElement('div');
+                card.className = 'specialty-card' + (spec === data.specialty ? ' primary' : '');
+                card.innerHTML = `
+                    <div>${spec === data.specialty ? '★ ' : ''}${spec}</div>
+                    <div class="score">${specData.grade}</div>
+                    <div>Top ${100 - specData.percentile}%</div>
+                `;
+                scoresDiv.appendChild(card);
+            }
+
+            // Production
+            const prodSection = document.getElementById('productionSection');
+            if (data.helps_per_day) {
+                document.getElementById('productionInfo').textContent =
+                    `~${data.helps_per_day} helps/day`;
+                prodSection.style.display = 'block';
+            } else {
+                prodSection.style.display = 'none';
+            }
+
+            resultDiv.classList.add('visible');
+        }
+    </script>
+</body>
+</html>

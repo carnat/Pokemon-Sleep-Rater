@@ -5,12 +5,25 @@ from dotenv import load_dotenv
 from telegram import Update
 from telegram.ext import Application, CommandHandler, ContextTypes, MessageHandler, filters
 
-from ocr import detect_text_uri
 from pokemon import RatePokemon
 from pokemon_db import db
 
 load_dotenv()
 logger = logging.getLogger(__name__)
+
+# Select OCR backend based on environment variable.
+# Default to 'tesseract' (free, no API key). Set OCR_BACKEND=google to use Google Vision.
+_OCR_BACKEND = os.getenv("OCR_BACKEND", "tesseract").lower()
+
+
+def _detect_text(image_url):
+    """Run OCR using the configured backend. Returns list of strings or None."""
+    if _OCR_BACKEND == "google":
+        from ocr import detect_text_uri
+        return detect_text_uri(image_url)
+    else:
+        from ocr_local import detect_text_uri_local
+        return detect_text_uri_local(image_url)
 
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -61,7 +74,7 @@ async def rateps(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     image_url = photo_file.file_path
 
     try:
-        ocr_results = detect_text_uri(image_url)
+        ocr_results = _detect_text(image_url)
         if not ocr_results:
             await message.reply_text(
                 "Could not read the image. Please check the screenshot and try again."
@@ -130,6 +143,8 @@ def main() -> None:
     app.add_handler(CommandHandler("rateps", rateps))
     # Also handle photos sent with the caption /rateps (with optional level arg)
     app.add_handler(MessageHandler(filters.PHOTO & filters.CaptionRegex(r"^/rateps"), rateps))
+    # Auto-rate any photo sent without a caption (Phase 3 enhancement)
+    app.add_handler(MessageHandler(filters.PHOTO & ~filters.CAPTION, rateps))
 
     logger.info("Telegram bot starting...")
     app.run_polling(allowed_updates=Update.ALL_TYPES)

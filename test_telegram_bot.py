@@ -155,7 +155,7 @@ async def test_rateps_invalid_level_returns_error():
 # ---------------------------------------------------------------------------
 
 @pytest.mark.asyncio
-@patch("telegram_bot.detect_text_uri", return_value=None)
+@patch("telegram_bot._detect_text", return_value=None)
 async def test_rateps_ocr_failure(mock_ocr):
     from telegram_bot import rateps
 
@@ -178,7 +178,7 @@ async def test_rateps_ocr_failure(mock_ocr):
 
 @pytest.mark.asyncio
 @patch("telegram_bot.RatePokemon")
-@patch("telegram_bot.detect_text_uri", return_value=["Pikachu", "Impish", "Helping Bonus"])
+@patch("telegram_bot._detect_text", return_value=["Pikachu", "Impish", "Helping Bonus"])
 async def test_rateps_pokemon_not_found(mock_ocr, MockRatePokemon):
     mock_instance = MockRatePokemon.return_value
     mock_instance.rate_pokemon.return_value = False
@@ -203,7 +203,7 @@ async def test_rateps_pokemon_not_found(mock_ocr, MockRatePokemon):
 
 @pytest.mark.asyncio
 @patch("telegram_bot.RatePokemon")
-@patch("telegram_bot.detect_text_uri")
+@patch("telegram_bot._detect_text")
 async def test_rateps_success_no_level(mock_ocr, MockRatePokemon):
     mock_ocr.return_value = ["Spheal", "Impish", "Energy Recovery Bonus",
                              "Inventory Up S", "Helping Speed M", "Inventory Up L", "Skill Trigger S"]
@@ -233,7 +233,7 @@ async def test_rateps_success_no_level(mock_ocr, MockRatePokemon):
 
 @pytest.mark.asyncio
 @patch("telegram_bot.RatePokemon")
-@patch("telegram_bot.detect_text_uri")
+@patch("telegram_bot._detect_text")
 async def test_rateps_success_with_level(mock_ocr, MockRatePokemon):
     mock_ocr.return_value = ["Spheal", "Impish", "Energy Recovery Bonus",
                              "Inventory Up S", "Helping Speed M", "Inventory Up L", "Skill Trigger S"]
@@ -266,7 +266,7 @@ async def test_rateps_success_with_level(mock_ocr, MockRatePokemon):
 
 @pytest.mark.asyncio
 @patch("telegram_bot.RatePokemon")
-@patch("telegram_bot.detect_text_uri")
+@patch("telegram_bot._detect_text")
 async def test_rateps_photo_with_caption(mock_ocr, MockRatePokemon):
     """Bot should also work when the photo is sent with a /rateps caption."""
     mock_ocr.return_value = ["Pikachu", "Jolly", "Berry Finding S",
@@ -294,7 +294,7 @@ async def test_rateps_photo_with_caption(mock_ocr, MockRatePokemon):
 
 @pytest.mark.asyncio
 @patch("telegram_bot.RatePokemon")
-@patch("telegram_bot.detect_text_uri")
+@patch("telegram_bot._detect_text")
 async def test_rateps_uses_reply_photo(mock_ocr, MockRatePokemon):
     """When no photo attached, bot should fall back to the replied-to message's photo."""
     mock_ocr.return_value = ["Gengar", "Modest", "Ingredient Finder M"]
@@ -323,7 +323,7 @@ async def test_rateps_uses_reply_photo(mock_ocr, MockRatePokemon):
 # ---------------------------------------------------------------------------
 
 @pytest.mark.asyncio
-@patch("telegram_bot.detect_text_uri", side_effect=RuntimeError("network error"))
+@patch("telegram_bot._detect_text", side_effect=RuntimeError("network error"))
 async def test_rateps_unexpected_exception(mock_ocr):
     from telegram_bot import rateps
 
@@ -345,7 +345,7 @@ async def test_rateps_unexpected_exception(mock_ocr):
 
 @pytest.mark.asyncio
 @patch("telegram_bot.RatePokemon")
-@patch("telegram_bot.detect_text_uri")
+@patch("telegram_bot._detect_text")
 async def test_rateps_all_specialty_scores_displayed(mock_ocr, MockRatePokemon):
     mock_ocr.return_value = ["Chansey", "Calm", "Skill Trigger M"]
     mock_instance = MockRatePokemon.return_value
@@ -373,7 +373,7 @@ async def test_rateps_all_specialty_scores_displayed(mock_ocr, MockRatePokemon):
 
 @pytest.mark.asyncio
 @patch("telegram_bot.RatePokemon")
-@patch("telegram_bot.detect_text_uri")
+@patch("telegram_bot._detect_text")
 async def test_rateps_helps_per_day_displayed(mock_ocr, MockRatePokemon):
     mock_ocr.return_value = ["Spheal", "Impish"]
     mock_instance = MockRatePokemon.return_value
@@ -398,7 +398,7 @@ async def test_rateps_helps_per_day_displayed(mock_ocr, MockRatePokemon):
 
 @pytest.mark.asyncio
 @patch("telegram_bot.RatePokemon")
-@patch("telegram_bot.detect_text_uri")
+@patch("telegram_bot._detect_text")
 async def test_rateps_no_helps_per_day_not_shown(mock_ocr, MockRatePokemon):
     mock_ocr.return_value = ["UnknownMon", "Hardy"]
     result = _good_result()
