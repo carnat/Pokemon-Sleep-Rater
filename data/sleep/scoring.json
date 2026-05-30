@@ -1,0 +1,304 @@
+{
+  "version": "2026.05.30-seed",
+  "updated_at": "2026-05-30",
+  "sources": [
+    {
+      "name": "Current repo curated tables",
+      "url": "pokemon.py",
+      "notes": "Seed snapshot extracted from the pre-refactor Python rating engine."
+    },
+    {
+      "name": "RaenonX Production Rates",
+      "url": "https://hackmd.io/@raenonx-pokemon-sleep/B1Rhup7l-x",
+      "notes": "Formula reference for future reviewed production-rate updates."
+    },
+    {
+      "name": "RaenonX Helping Frequency Formula",
+      "url": "https://hackmd.io/@raenonx-pokemon-sleep/rJaoFoEe-x",
+      "notes": "Formula reference for helper frequency modifiers."
+    },
+    {
+      "name": "Serebii Pokemon Sleep skills",
+      "url": "https://www.serebii.net/pokemonsleep/skills.shtml",
+      "notes": "Cross-check source for skill/subskill names."
+    }
+  ],
+  "natures": {
+    "Hardy": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Lonely": [
+      1.0,
+      1.0,
+      0.67
+    ],
+    "Brave": [
+      1.67,
+      1.67,
+      1.67
+    ],
+    "Adamant": [
+      3.0,
+      -0.17,
+      0.67
+    ],
+    "Naughty": [
+      1.83,
+      1.67,
+      -0.17
+    ],
+    "Bold": [
+      -1.33,
+      -1.33,
+      -1.0
+    ],
+    "Docile": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Relaxed": [
+      -0.67,
+      -0.67,
+      -0.33
+    ],
+    "Impish": [
+      1.5,
+      -1.33,
+      -0.17
+    ],
+    "Lax": [
+      0.17,
+      0.17,
+      -1.0
+    ],
+    "Timid": [
+      -1.0,
+      -1.0,
+      -1.0
+    ],
+    "Hasty": [
+      0.33,
+      0.33,
+      0
+    ],
+    "Serious": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Jolly": [
+      2.17,
+      -1.0,
+      0.17
+    ],
+    "Naive": [
+      0.83,
+      0.58,
+      -1.0
+    ],
+    "Modest": [
+      -1.67,
+      0.5,
+      -0.33
+    ],
+    "Mild": [
+      -1.0,
+      1.17,
+      0
+    ],
+    "Quiet": [
+      -0.67,
+      2.0,
+      1.0
+    ],
+    "Bashful": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "Rash": [
+      -0.5,
+      2.0,
+      -0.67
+    ],
+    "Calm": [
+      -0.67,
+      -0.67,
+      0.67
+    ],
+    "Gentle": [
+      -0.33,
+      0.33,
+      1.33
+    ],
+    "Sassy": [
+      0,
+      0.25,
+      1.67
+    ],
+    "Careful": [
+      1.5,
+      -1.0,
+      1.33
+    ],
+    "Quirky": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "subskills": {
+    "Berry Finding S": [
+      5,
+      4,
+      5
+    ],
+    "Dream Shard Bonus": [
+      2,
+      2,
+      2
+    ],
+    "Energy Recovery Bonus": [
+      3,
+      3,
+      3
+    ],
+    "Energy Recovery S": [
+      2,
+      2,
+      2
+    ],
+    "Energy Recovery M": [
+      3,
+      3,
+      3
+    ],
+    "Helping Bonus": [
+      5,
+      5,
+      5
+    ],
+    "Helping Speed S": [
+      3,
+      3,
+      3
+    ],
+    "Helping Speed M": [
+      4,
+      4,
+      4
+    ],
+    "Ingredient Finder S": [
+      1,
+      4,
+      3
+    ],
+    "Ingredient Finder M": [
+      1,
+      5,
+      4
+    ],
+    "Inventory Up S": [
+      2,
+      3,
+      2
+    ],
+    "Inventory Up M": [
+      3,
+      4,
+      3
+    ],
+    "Inventory Up L": [
+      4,
+      5,
+      4
+    ],
+    "Research EXP Bonus": [
+      2,
+      2,
+      2
+    ],
+    "Skill Level Up S": [
+      3,
+      3,
+      4
+    ],
+    "Skill Level Up M": [
+      4,
+      4,
+      5
+    ],
+    "Skill Trigger S": [
+      3,
+      3,
+      4
+    ],
+    "Skill Trigger M": [
+      4,
+      4,
+      5
+    ],
+    "Sleep EXP Bonus": [
+      3,
+      3,
+      3
+    ]
+  },
+  "score_ranges": {
+    "Berries": [
+      4.33,
+      28.0
+    ],
+    "Ingredients": [
+      11.0,
+      24.0
+    ],
+    "Skills": [
+      10.5,
+      26.0
+    ]
+  },
+  "detection_order_levels": [
+    10,
+    50,
+    100,
+    25,
+    75
+  ],
+  "speed_sensitive_subskills": [
+    "Helping Speed S",
+    "Helping Speed M",
+    "Berry Finding S"
+  ],
+  "production_defaults": {
+    "baseline_frequency": 4500,
+    "production_efficiency": 0.8,
+    "default_level": 30,
+    "default_energy": 80,
+    "good_camp_multiplier": 1.2,
+    "role_weights": {
+      "Berries": {
+        "berries": 0.62,
+        "ingredients": 0.22,
+        "skills": 0.16
+      },
+      "Ingredients": {
+        "berries": 0.2,
+        "ingredients": 0.62,
+        "skills": 0.18
+      },
+      "Skills": {
+        "berries": 0.18,
+        "ingredients": 0.2,
+        "skills": 0.62
+      }
+    },
+    "recommendation_thresholds": {
+      "keep": 78,
+      "consider": 45
+    }
+  }
+}

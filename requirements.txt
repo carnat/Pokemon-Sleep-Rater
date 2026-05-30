@@ -17,7 +17,6 @@ Flask==2.3.3
 frozenlist==1.4.0
 google-api-core==2.11.1
 google-auth==2.22.0
-google-cloud-vision==3.4.4
 googleapis-common-protos==1.60.0
 greenlet==2.0.2
 grpcio==1.58.0
@@ -51,3 +50,5 @@ urllib3==1.26.16
 Werkzeug==2.3.7
 yarl==1.9.2
 python-telegram-bot==21.11.1
+pytest==9.0.3
+pytest-asyncio==1.4.0

@@ -2,7 +2,7 @@ import discord
 import os
 from dotenv import load_dotenv
 from pokemon import RatePokemon
-from ocr import detect_text_uri
+from ocr_local import detect_text_uri_local
 
 load_dotenv()
 
@@ -16,7 +16,7 @@ class PokemonSleepRatingBot(discord.Client):
         if message.content.startswith('!rateps'):
             if message.attachments and any(
                     att.filename.endswith(('.png', '.jpg', '.jpeg')) for att in message.attachments):
-                result = RatePokemon().rate_pokemon(detect_text_uri(message.attachments[0].url))
+                result = RatePokemon().rate_pokemon(detect_text_uri_local(message.attachments[0].url))
                 if not result:
                     await message.reply(
                         "Pokémon not found. Please check image upload (name, nature, and subskills) or try again.")

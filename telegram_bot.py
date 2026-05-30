@@ -1,29 +1,21 @@
 import logging
 import os
+from io import BytesIO
 
 from dotenv import load_dotenv
 from telegram import Update
 from telegram.ext import Application, CommandHandler, ContextTypes, MessageHandler, filters
 
+from ocr_local import detect_text_local
 from pokemon import RatePokemon
 from pokemon_db import db
 
 load_dotenv()
 logger = logging.getLogger(__name__)
 
-# Select OCR backend based on environment variable.
-# Default to 'tesseract' (free, no API key). Set OCR_BACKEND=google to use Google Vision.
-_OCR_BACKEND = os.getenv("OCR_BACKEND", "tesseract").lower()
-
-
-def _detect_text(image_url):
-    """Run OCR using the configured backend. Returns list of strings or None."""
-    if _OCR_BACKEND == "google":
-        from ocr import detect_text_uri
-        return detect_text_uri(image_url)
-    else:
-        from ocr_local import detect_text_uri_local
-        return detect_text_uri_local(image_url)
+def _detect_text(image_bytes):
+    """Run local Tesseract OCR from in-memory image bytes."""
+    return detect_text_local(image_bytes, source='bytes')
 
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -69,15 +61,15 @@ async def rateps(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         )
         return
 
-    # Resolve a public URL for the photo so Google Vision can fetch it.
     photo_file = await photo.get_file()
-    image_url = photo_file.file_path
 
     try:
-        ocr_results = _detect_text(image_url)
+        image_buffer = BytesIO()
+        await photo_file.download_to_memory(out=image_buffer)
+        ocr_results = _detect_text(image_buffer.getvalue())
         if not ocr_results:
             await message.reply_text(
-                "Could not read the image. Please check the screenshot and try again."
+                "Could not read the image. Please use a clear screenshot showing the Pokemon name, nature, and subskills."
             )
             return
 
@@ -99,6 +91,10 @@ async def rateps(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         all_scores = result['all_scores']
         helps_per_day = result['helps_per_day']
         specialty = result['specialty']
+        production_score = result.get('production_score')
+        recommendation = result.get('recommendation')
+        recommendation_reasons = result.get('recommendation_reasons', [])
+        data_version = result.get('data_version')
 
         level_note = f" (Lv. {level})" if level else ""
         top_pct = 100 - percentile
@@ -124,27 +120,39 @@ async def rateps(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         if helps_per_day:
             lines += ["", f"*Est. Production*: ~{helps_per_day} helps/day"]
 
+        if production_score is not None:
+            lines += ["", f"*Production Score*: {production_score}/100"]
+
+        if recommendation:
+            lines += ["", f"*Recommendation*: {recommendation}"]
+            lines.extend(f"- {reason}" for reason in recommendation_reasons[:3])
+
+        if data_version:
+            lines += ["", f"_Data: {data_version}_"]
+
         await message.reply_text("\n".join(lines), parse_mode="Markdown")
 
     except Exception as e:
-        logger.error("Error processing /rateps: %s", e, exc_info=True)
+        logger.error("Error processing /rateps: %s", type(e).__name__, exc_info=True)
         await message.reply_text(
             "Pokémon not found. Please check the image upload (name, nature, and subskills) or try again."
         )
 
-
-def main() -> None:
-    token = os.getenv("TELEGRAM_BOT_TOKEN")
+def build_application(token=None):
+    token = token or os.getenv("TELEGRAM_BOT_TOKEN")
     if not token:
         raise RuntimeError("TELEGRAM_BOT_TOKEN environment variable is not set.")
 
     app = Application.builder().token(token).build()
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CommandHandler("rateps", rateps))
-    # Also handle photos sent with the caption /rateps (with optional level arg)
     app.add_handler(MessageHandler(filters.PHOTO & filters.CaptionRegex(r"^/rateps"), rateps))
-    # Auto-rate any photo sent without a caption (Phase 3 enhancement)
     app.add_handler(MessageHandler(filters.PHOTO & ~filters.CAPTION, rateps))
+    return app
+
+
+def main() -> None:
+    app = build_application()
 
     logger.info("Telegram bot starting...")
     app.run_polling(allowed_updates=Update.ALL_TYPES)

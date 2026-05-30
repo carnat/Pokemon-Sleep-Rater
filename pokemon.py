@@ -1,3 +1,7 @@
+from pokemon_data import SLEEP_DATA
+from production import ProductionInputs, calculate_production, recommend
+
+
 class RatePokemon:
     # Pokemon mapped to primary specialty. Expanded to cover Gen 1-6 roster in Pokémon Sleep.
     pokemon = {
@@ -240,6 +244,19 @@ class RatePokemon:
     # Used only for the production estimate; does not affect the rating score.
     _PRODUCTION_EFFICIENCY = 0.80
 
+    # Runtime data comes from reviewed JSON snapshots. These assignments keep
+    # the older class attributes available for OCR, bots, and tests.
+    _DATA = SLEEP_DATA
+    pokemon = _DATA.pokemon
+    natures = _DATA.natures
+    subskills = _DATA.subskills
+    base_frequencies = _DATA.base_frequencies
+    SPEED_SENSITIVE_SUBSKILLS = _DATA.speed_sensitive_subskills
+    DETECTION_ORDER_LEVELS = _DATA.detection_order_levels
+    SCORE_RANGES = _DATA.score_ranges
+    _BASELINE_FREQ = _DATA.production_defaults["baseline_frequency"]
+    _PRODUCTION_EFFICIENCY = _DATA.production_defaults["production_efficiency"]
+
     def __init__(self, name='', nature='', skills=None):
         self.name = name
         self.nature = nature
@@ -339,7 +356,17 @@ class RatePokemon:
         else:
             return '**S**! <:gengarshades:1150207094297997332>'
 
-    def rate_pokemon(self, results, pokemon_level=None):
+    def rate_pokemon(
+        self,
+        results,
+        pokemon_level=None,
+        ingredient_spread=None,
+        main_skill_level=None,
+        energy=None,
+        good_camp=False,
+        area=None,
+        favored_berry=None,
+    ):
         """Rate the Pokémon described by OCR results.
 
         Args:
@@ -369,6 +396,22 @@ class RatePokemon:
         # (approximates average Lv30–50 Pokémon with typical camp bonuses).
         freq = self.base_frequencies.get(self.name)
         helps_per_day = round(86400 / (freq * self._PRODUCTION_EFFICIENCY)) if freq else None
+        production = calculate_production(
+            self.name,
+            self.nature,
+            self.skills,
+            ProductionInputs(
+                level=pokemon_level,
+                ingredient_spread=ingredient_spread,
+                main_skill_level=main_skill_level,
+                energy=energy,
+                good_camp=good_camp,
+                area=area,
+                favored_berry=favored_berry,
+            ),
+            self._DATA,
+        )
+        advice = recommend(percentile, specialty, production, self._DATA)
 
         return {
             'name': self.name,
@@ -382,6 +425,13 @@ class RatePokemon:
             'all_scores': all_scores,
             'helps_per_day': helps_per_day,
             'specialty': specialty,
+            'production_score': production.get('production_score'),
+            'production_breakdown': production,
+            'recommendation': advice['recommendation'],
+            'recommendation_score': advice['recommendation_score'],
+            'recommendation_reasons': advice['recommendation_reasons'],
+            'assumptions_used': production.get('assumptions_used', []),
+            'data_version': self._DATA.version,
         }
 
 

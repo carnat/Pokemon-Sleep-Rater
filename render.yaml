@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: pokemon-sleep-rater
+    env: docker
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: TELEGRAM_WEBHOOK_SECRET
+        generateValue: true
+      - key: MCP_TOKEN
+        generateValue: true

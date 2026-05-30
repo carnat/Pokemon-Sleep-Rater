@@ -1,4 +1,4 @@
-"""Local OCR using Tesseract — free alternative to Google Cloud Vision.
+"""Local OCR using Tesseract.
 
 This module provides the same interface as ocr.py (returns a list of text
 strings) but uses pytesseract for text detection. It crops specific regions
