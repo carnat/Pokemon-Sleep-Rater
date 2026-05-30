@@ -63,6 +63,19 @@
             color: #fff;
             font-size: 1em;
         }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .checkbox-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            color: #ddd;
+        }
+        .checkbox-row input { width: auto; }
         .btn {
             display: block;
             width: 100%;
@@ -149,6 +162,31 @@
             </div>
 
             <button type="submit" class="btn" id="submitBtn" disabled>Rate My Pokémon</button>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="mainSkillInput">Main Skill Lv. (optional)</label>
+                    <input type="number" id="mainSkillInput" name="main_skill_level" min="1" max="8" placeholder="1">
+                </div>
+                <div class="form-group">
+                    <label for="energyInput">Energy % (optional)</label>
+                    <input type="number" id="energyInput" name="energy" min="0" max="100" placeholder="80">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="ingredientInput">Ingredient Spread (optional)</label>
+                <input type="text" id="ingredientInput" name="ingredient_spread" placeholder="Apple, Honey, Milk">
+            </div>
+
+            <label class="checkbox-row">
+                <input type="checkbox" id="goodCampInput" name="good_camp">
+                Good Camp Ticket active
+            </label>
+
+            <label class="checkbox-row">
+                <input type="checkbox" id="favoredBerryInput" name="favored_berry">
+                Favorite berry on current island
+            </label>
         </form>
 
         <div class="loading" id="loading">
@@ -180,6 +218,16 @@
             <div class="section" id="productionSection" style="display:none">
                 <h3>Est. Production</h3>
                 <div id="productionInfo"></div>
+            </div>
+
+            <div class="section" id="recommendationSection" style="display:none">
+                <h3>Recommendation</h3>
+                <div id="recommendationInfo"></div>
+            </div>
+
+            <div class="section" id="assumptionsSection" style="display:none">
+                <h3>Assumptions</h3>
+                <div id="assumptionsInfo"></div>
             </div>
         </div>
     </div>
@@ -238,6 +286,14 @@
             formData.append('image', imageInput.files[0]);
             const level = document.getElementById('levelInput').value;
             if (level) formData.append('level', level);
+            const mainSkill = document.getElementById('mainSkillInput').value;
+            if (mainSkill) formData.append('main_skill_level', mainSkill);
+            const energy = document.getElementById('energyInput').value;
+            if (energy) formData.append('energy', energy);
+            const ingredients = document.getElementById('ingredientInput').value;
+            if (ingredients) formData.append('ingredient_spread', ingredients);
+            if (document.getElementById('goodCampInput').checked) formData.append('good_camp', 'true');
+            if (document.getElementById('favoredBerryInput').checked) formData.append('favored_berry', 'true');
 
             try {
                 const res = await fetch('/rate', { method: 'POST', body: formData });
@@ -305,10 +361,29 @@
             const prodSection = document.getElementById('productionSection');
             if (data.helps_per_day) {
                 document.getElementById('productionInfo').textContent =
-                    `~${data.helps_per_day} helps/day`;
+                    `~${data.helps_per_day} helps/day - Production score ${data.production_score}/100`;
                 prodSection.style.display = 'block';
             } else {
                 prodSection.style.display = 'none';
+            }
+
+            const recSection = document.getElementById('recommendationSection');
+            if (data.recommendation) {
+                document.getElementById('recommendationInfo').innerHTML =
+                    `<strong>${data.recommendation}</strong> (${data.recommendation_score}/100)<br>` +
+                    data.recommendation_reasons.map(reason => `- ${reason}`).join('<br>');
+                recSection.style.display = 'block';
+            } else {
+                recSection.style.display = 'none';
+            }
+
+            const assumptionsSection = document.getElementById('assumptionsSection');
+            if (data.assumptions_used && data.assumptions_used.length) {
+                document.getElementById('assumptionsInfo').textContent =
+                    `${data.assumptions_used.join('; ')}. Data: ${data.data_version}`;
+                assumptionsSection.style.display = 'block';
+            } else {
+                assumptionsSection.style.display = 'none';
             }
 
             resultDiv.classList.add('visible');

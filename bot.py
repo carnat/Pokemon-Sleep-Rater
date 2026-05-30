@@ -9,23 +9,15 @@ load_dotenv()
 bot = discord.Bot()
 logger = logging.getLogger(__name__)
 
-# Select OCR backend based on environment variable.
-_OCR_BACKEND = os.getenv("OCR_BACKEND", "tesseract").lower()
-
-
 def _detect_text(image_url):
-    """Run OCR using the configured backend. Returns list of strings or None."""
-    if _OCR_BACKEND == "google":
-        from ocr import detect_text_uri
-        return detect_text_uri(image_url)
-    else:
-        from ocr_local import detect_text_uri_local
-        return detect_text_uri_local(image_url)
+    """Run local Tesseract OCR. Discord hosting is deferred for free v1."""
+    from ocr_local import detect_text_uri_local
+    return detect_text_uri_local(image_url)
 
 
 @bot.event
 async def on_ready():
-    print(f"{bot.user} is ready and online!")
+    logger.info("Discord bot is ready")
 
 
 @bot.slash_command(name="rateps", description="Upload an image of your Pokémon to be rated.")
@@ -37,7 +29,6 @@ async def rateps(
 ):
     if image:
         try:
-            print(image)
             result = RatePokemon().rate_pokemon(_detect_text(image.url), pokemon_level=level)
             if not result:
                 await ctx.respond(
@@ -55,6 +46,10 @@ async def rateps(
             all_scores = result['all_scores']
             helps_per_day = result['helps_per_day']
             specialty = result['specialty']
+            production_score = result.get('production_score')
+            recommendation = result.get('recommendation')
+            recommendation_reasons = result.get('recommendation_reasons', [])
+            data_version = result.get('data_version')
 
             level_note = f" (Lv. {level})" if level else ""
             embed = discord.Embed(
@@ -92,6 +87,23 @@ async def rateps(
                 )
 
             embed.set_author(name="Pokémon Sleep Rater", icon_url="https://i.imgur.com/xQ8V3OI.png")
+            if production_score is not None:
+                embed.add_field(
+                    name="Production Score",
+                    value=f"{production_score}/100",
+                    inline=True,
+                )
+
+            if recommendation:
+                embed.add_field(
+                    name=f"Recommendation: {recommendation}",
+                    value="\n".join(recommendation_reasons[:3]),
+                    inline=False,
+                )
+
+            if data_version:
+                embed.set_footer(text=f"Data: {data_version}")
+
             embed.set_thumbnail(url="https://i.imgur.com/Ox0DTqY.png")
             await ctx.respond(embed=embed)
         except Exception as e:

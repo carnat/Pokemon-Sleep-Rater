@@ -14,11 +14,13 @@ The project provides two implementations of the same rating engine:
 - **Python** — standalone Discord and Telegram bots, run locally or on a cloud VM.
 - **Cloudflare Worker (TypeScript)** — a single serverless deployment that serves Discord (Interactions endpoint), Telegram (webhook), and an MCP server over HTTP.
 
-Both share the same scoring data, grading logic, and Google Cloud Vision OCR integration.
+The free-hosted v1 runtime uses local Tesseract OCR only. Screenshots are processed transiently and are not stored.
 
 ## How to Use
 
 ### Discord
+Discord is deferred for the free-hosted v1 path. The existing Python Discord bot can still be run manually, but the Render deployment focuses on web upload, Telegram webhook, and protected MCP.
+
 Use the slash command `/rateps` and attach a screenshot. An optional `level` argument lets you specify your Pokémon's current level so that subskills not yet unlocked are excluded from the score.
 
 ```
@@ -37,7 +39,7 @@ Send a photo to the bot with the caption `/rateps`. You can also include an opti
 You can also send a photo first and then reply to it with `/rateps`.
 
 ### MCP (Model Context Protocol)
-The Cloudflare Worker exposes an MCP endpoint at `POST /mcp` that speaks JSON-RPC 2.0. It is a **pure-computation engine** — no OCR, no external API calls, no secrets required. When a user shares a screenshot, the AI assistant reads the Pokémon's name, nature, and subskills from the image natively, then calls `rate_pokemon` with the extracted data.
+The Flask app exposes a protected MCP endpoint at `POST /mcp` that speaks JSON-RPC 2.0. It is a **pure-computation engine**: clients provide structured fields such as name, nature, subskills, and optional level. Screenshots should be submitted through web/Telegram OCR or parsed by the client before calling MCP.
 
 AI assistants and other MCP-compatible clients can call the following tools:
 
@@ -50,44 +52,43 @@ AI assistants and other MCP-compatible clients can call the following tools:
 
 ## Self-Hosting Setup
 
-### Option A — Cloudflare Worker (recommended)
+For the free-hosted v1 path, deploy the Dockerized Flask service. Discord and the TypeScript Cloudflare Worker remain legacy/deferred paths and are not required for OCR hosting.
 
-The worker handles Discord, Telegram, and MCP from a single deployment.
+### Option A - Render Free Docker (recommended)
+
+The Docker service handles web upload, Telegram webhook, and protected MCP from one free web service.
 
 #### Prerequisites
 
-- Node.js 22+
-- A [Cloudflare](https://dash.cloudflare.com/) account
-- A [Google Cloud Vision API](https://cloud.google.com/vision/docs/setup) key (used for OCR)
-- A Discord application and/or a Telegram bot token
+- A Render account
+- A Telegram bot token from @BotFather
+- Local Tesseract OCR, installed by the Dockerfile
 
 #### 1. Install Dependencies
 
 ```bash
-cd worker
-npm ci
+docker build -t pokemon-sleep-rater .
 ```
 
 #### 2. Configure Secrets
 
-Add the following secrets to your Cloudflare Worker (via the dashboard or `wrangler secret put`):
+Set the following Render environment variables:
 
 | Secret | Required for |
 |--------|-------------|
-| `DISCORD_PUBLIC_KEY` | Discord — Ed25519 signature verification |
-| `DISCORD_APPLICATION_ID` | Discord — follow-up messages |
 | `TELEGRAM_BOT_TOKEN` | Telegram |
-| `GOOGLE_CLOUD_API_KEY` | OCR (all platforms) |
+| `TELEGRAM_WEBHOOK_SECRET` | Secret path segment for Telegram webhook |
+| `MCP_TOKEN` | Bearer token required by `/mcp` |
 
-> `DISCORD_BOT_TOKEN` is used only for slash command registration (step 5) and should be added as a **GitHub repository secret**, not a Cloudflare secret.
+Render can generate `TELEGRAM_WEBHOOK_SECRET` and `MCP_TOKEN` from `render.yaml`.
 
 #### 3. Deploy
 
 ```bash
-npx wrangler deploy
+gunicorn webapp:app --bind 0.0.0.0:$PORT
 ```
 
-The worker auto-deploys on push to `master` (when files in `worker/` change) via the GitHub Actions workflow.
+Render can deploy the Dockerfile directly from the repository.
 
 #### 4. Create a Discord Application
 
@@ -137,7 +138,6 @@ Run the Discord and/or Telegram bots as long-running processes.
 #### Prerequisites
 
 - Python 3.11+
-- A [Google Cloud Vision API](https://cloud.google.com/vision/docs/setup) service account with credentials (used for OCR)
 - A Discord bot token and/or a Telegram bot token
 
 #### 1. Clone and Install Dependencies
@@ -205,6 +205,33 @@ Scores for all three specialties (Berries, Ingredients, Skills) are shown side b
 
 ### Production Estimate
 An approximate **helps per day** figure is shown based on the Pokémon's base helping frequency at ~80% efficiency (approximating a Lv. 30–50 Pokémon with typical camp bonuses).
+
+### Production-Based Recommendation
+The Python runtime also calculates a production score and cautious recommendation:
+
+- **Keep** - strong role fit or high expected production.
+- **Consider** - usable, but compare against your current team and goals.
+- **Release** - weak investment unless it is shiny, a favorite, or fills a niche.
+
+The first implementation uses reviewed JSON snapshots in `data/sleep/` as the source of truth. Species-specific production rates are seeded with conservative role defaults where reviewed rates are not yet available; update them through reviewed snapshot diffs rather than live scraping.
+
+### Data Updates
+Run the non-mutating validator before merging curated data updates:
+
+```bash
+python scripts/validate_sleep_data.py
+```
+
+To review a proposed snapshot without editing checked-in files:
+
+```bash
+python scripts/validate_sleep_data.py --species path/to/species.json --scoring path/to/scoring.json
+```
+
+The validator checks schema integrity, reports added/removed/changed Pokemon, and keeps data updates reviewable.
+
+### Python MCP Endpoint
+The Flask app exposes `POST /mcp` for calculator-only MCP clients. It accepts structured fields such as name, nature, subskills, level, energy, main skill level, and favored berry. Screenshots should be parsed by the client/assistant before calling MCP.
 
 ### Grading Scale
 The bot combines all raw scores and rates the Pokémon using the following scale:

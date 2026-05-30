@@ -1,0 +1,2893 @@
+{
+  "version": "2026.05.30-seed",
+  "updated_at": "2026-05-30",
+  "sources": [
+    {
+      "name": "Current repo curated tables",
+      "url": "pokemon.py",
+      "notes": "Seed snapshot extracted from the pre-refactor Python rating engine."
+    },
+    {
+      "name": "RaenonX Production Rates",
+      "url": "https://hackmd.io/@raenonx-pokemon-sleep/B1Rhup7l-x",
+      "notes": "Formula reference for future reviewed production-rate updates."
+    },
+    {
+      "name": "RaenonX Helping Frequency Formula",
+      "url": "https://hackmd.io/@raenonx-pokemon-sleep/rJaoFoEe-x",
+      "notes": "Formula reference for helper frequency modifiers."
+    },
+    {
+      "name": "Serebii Pokemon Sleep skills",
+      "url": "https://www.serebii.net/pokemonsleep/skills.shtml",
+      "notes": "Cross-check source for skill/subskill names."
+    }
+  ],
+  "species": {
+    "Bulbasaur": {
+      "specialty": "Ingredients",
+      "base_frequency": 4320,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Ivysaur": {
+      "specialty": "Ingredients",
+      "base_frequency": 4320,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Venusaur": {
+      "specialty": "Ingredients",
+      "base_frequency": 4320,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Charmander": {
+      "specialty": "Ingredients",
+      "base_frequency": 4680,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Charmeleon": {
+      "specialty": "Ingredients",
+      "base_frequency": 4680,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Charizard": {
+      "specialty": "Ingredients",
+      "base_frequency": 4680,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Squirtle": {
+      "specialty": "Ingredients",
+      "base_frequency": 4500,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Wartortle": {
+      "specialty": "Ingredients",
+      "base_frequency": 4500,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Blastoise": {
+      "specialty": "Ingredients",
+      "base_frequency": 4500,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Caterpie": {
+      "specialty": "Berries",
+      "base_frequency": 3060,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Metapod": {
+      "specialty": "Berries",
+      "base_frequency": 3060,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Butterfree": {
+      "specialty": "Berries",
+      "base_frequency": 3060,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Rattata": {
+      "specialty": "Berries",
+      "base_frequency": 2940,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Raticate": {
+      "specialty": "Berries",
+      "base_frequency": 2940,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Ekans": {
+      "specialty": "Berries",
+      "base_frequency": 3960,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Arbok": {
+      "specialty": "Berries",
+      "base_frequency": 3960,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Pikachu": {
+      "specialty": "Berries",
+      "base_frequency": 3600,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Raichu": {
+      "specialty": "Berries",
+      "base_frequency": 3600,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Jigglypuff": {
+      "specialty": "Skills",
+      "base_frequency": 3840,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Wigglytuff": {
+      "specialty": "Skills",
+      "base_frequency": 3840,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Diglett": {
+      "specialty": "Ingredients",
+      "base_frequency": 2880,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Dugtrio": {
+      "specialty": "Ingredients",
+      "base_frequency": 2880,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Meowth": {
+      "specialty": "Skills",
+      "base_frequency": 4080,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Persian": {
+      "specialty": "Skills",
+      "base_frequency": 4080,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Psyduck": {
+      "specialty": "Skills",
+      "base_frequency": 4440,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Golduck": {
+      "specialty": "Skills",
+      "base_frequency": 4440,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Mankey": {
+      "specialty": "Berries",
+      "base_frequency": 3840,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Primeape": {
+      "specialty": "Berries",
+      "base_frequency": 3840,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Growlithe": {
+      "specialty": "Skills",
+      "base_frequency": 4500,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Arcanine": {
+      "specialty": "Skills",
+      "base_frequency": 4500,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Bellsprout": {
+      "specialty": "Ingredients",
+      "base_frequency": 4200,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Weepinbell": {
+      "specialty": "Ingredients",
+      "base_frequency": 4200,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Victreebel": {
+      "specialty": "Ingredients",
+      "base_frequency": 4200,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Geodude": {
+      "specialty": "Ingredients",
+      "base_frequency": 4500,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Graveler": {
+      "specialty": "Ingredients",
+      "base_frequency": 4500,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Golem": {
+      "specialty": "Ingredients",
+      "base_frequency": 4500,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Slowpoke": {
+      "specialty": "Skills",
+      "base_frequency": 5760,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Slowbro": {
+      "specialty": "Skills",
+      "base_frequency": 5760,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Magnemite": {
+      "specialty": "Skills",
+      "base_frequency": 5100,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Magneton": {
+      "specialty": "Skills",
+      "base_frequency": 5100,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Doduo": {
+      "specialty": "Berries",
+      "base_frequency": 3480,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Dodrio": {
+      "specialty": "Berries",
+      "base_frequency": 3480,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Gastly": {
+      "specialty": "Ingredients",
+      "base_frequency": 4320,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Haunter": {
+      "specialty": "Ingredients",
+      "base_frequency": 4320,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Gengar": {
+      "specialty": "Ingredients",
+      "base_frequency": 4320,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Cubone": {
+      "specialty": "Berries",
+      "base_frequency": 3960,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Marowak": {
+      "specialty": "Berries",
+      "base_frequency": 3960,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Kangaskhan": {
+      "specialty": "Ingredients",
+      "base_frequency": 5460,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Pinsir": {
+      "specialty": "Ingredients",
+      "base_frequency": 4800,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Ditto": {
+      "specialty": "Ingredients",
+      "base_frequency": 5040,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Eevee": {
+      "specialty": "Skills",
+      "base_frequency": 4680,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Vaporeon": {
+      "specialty": "Skills",
+      "base_frequency": 4680,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Jolteon": {
+      "specialty": "Skills",
+      "base_frequency": 4680,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Flareon": {
+      "specialty": "Skills",
+      "base_frequency": 4680,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Chikorita": {
+      "specialty": "Berries",
+      "base_frequency": 4320,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Bayleef": {
+      "specialty": "Berries",
+      "base_frequency": 4320,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Meganium": {
+      "specialty": "Berries",
+      "base_frequency": 4320,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Cyndaquil": {
+      "specialty": "Berries",
+      "base_frequency": 4680,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Quilava": {
+      "specialty": "Berries",
+      "base_frequency": 4680,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Typhlosion": {
+      "specialty": "Berries",
+      "base_frequency": 4680,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Totodile": {
+      "specialty": "Berries",
+      "base_frequency": 3960,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Croconaw": {
+      "specialty": "Berries",
+      "base_frequency": 3960,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Feraligatr": {
+      "specialty": "Berries",
+      "base_frequency": 3960,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Pichu": {
+      "specialty": "Berries",
+      "base_frequency": 3600,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Igglybuff": {
+      "specialty": "Skills",
+      "base_frequency": 3840,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Togepi": {
+      "specialty": "Skills",
+      "base_frequency": 4320,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Togetic": {
+      "specialty": "Skills",
+      "base_frequency": 4320,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Mareep": {
+      "specialty": "Skills",
+      "base_frequency": 3840,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Flaaffy": {
+      "specialty": "Skills",
+      "base_frequency": 3840,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Ampharos": {
+      "specialty": "Skills",
+      "base_frequency": 3840,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Sudowoodo": {
+      "specialty": "Skills",
+      "base_frequency": 5400,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Espeon": {
+      "specialty": "Skills",
+      "base_frequency": 4680,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Umbreon": {
+      "specialty": "Skills",
+      "base_frequency": 4680,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Slowking": {
+      "specialty": "Skills",
+      "base_frequency": 5760,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Wobbuffet": {
+      "specialty": "Skills",
+      "base_frequency": 5040,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Heracross": {
+      "specialty": "Skills",
+      "base_frequency": 3120,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Houndour": {
+      "specialty": "Berries",
+      "base_frequency": 4080,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Houndoom": {
+      "specialty": "Berries",
+      "base_frequency": 4080,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Larvitar": {
+      "specialty": "Ingredients",
+      "base_frequency": 4800,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Pupitar": {
+      "specialty": "Ingredients",
+      "base_frequency": 4800,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Tyranitar": {
+      "specialty": "Ingredients",
+      "base_frequency": 4800,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Treecko": {
+      "specialty": "Berries",
+      "base_frequency": 3840,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Grovyle": {
+      "specialty": "Berries",
+      "base_frequency": 3840,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Sceptile": {
+      "specialty": "Berries",
+      "base_frequency": 3840,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Torchic": {
+      "specialty": "Ingredients",
+      "base_frequency": 4080,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Combusken": {
+      "specialty": "Ingredients",
+      "base_frequency": 4080,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Blaziken": {
+      "specialty": "Ingredients",
+      "base_frequency": 4080,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Mudkip": {
+      "specialty": "Berries",
+      "base_frequency": 3960,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Marshtomp": {
+      "specialty": "Berries",
+      "base_frequency": 3960,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Swampert": {
+      "specialty": "Berries",
+      "base_frequency": 3960,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Lotad": {
+      "specialty": "Ingredients",
+      "base_frequency": 4320,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Lombre": {
+      "specialty": "Ingredients",
+      "base_frequency": 4320,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Ludicolo": {
+      "specialty": "Ingredients",
+      "base_frequency": 4320,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Ralts": {
+      "specialty": "Skills",
+      "base_frequency": 4320,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Kirlia": {
+      "specialty": "Skills",
+      "base_frequency": 4320,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Gardevoir": {
+      "specialty": "Skills",
+      "base_frequency": 4320,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Shroomish": {
+      "specialty": "Ingredients",
+      "base_frequency": 4920,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Breloom": {
+      "specialty": "Ingredients",
+      "base_frequency": 4920,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Slakoth": {
+      "specialty": "Berries",
+      "base_frequency": 4800,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Vigoroth": {
+      "specialty": "Berries",
+      "base_frequency": 4800,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Slaking": {
+      "specialty": "Berries",
+      "base_frequency": 4800,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Sableye": {
+      "specialty": "Skills",
+      "base_frequency": 5040,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Electrike": {
+      "specialty": "Berries",
+      "base_frequency": 3840,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Manectric": {
+      "specialty": "Berries",
+      "base_frequency": 3840,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Gulpin": {
+      "specialty": "Skills",
+      "base_frequency": 4320,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Swalot": {
+      "specialty": "Skills",
+      "base_frequency": 4320,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Corphish": {
+      "specialty": "Ingredients",
+      "base_frequency": 3960,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Crawdaunt": {
+      "specialty": "Ingredients",
+      "base_frequency": 3960,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Lileep": {
+      "specialty": "Ingredients",
+      "base_frequency": 5520,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Cradily": {
+      "specialty": "Ingredients",
+      "base_frequency": 5520,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Absol": {
+      "specialty": "Ingredients",
+      "base_frequency": 4320,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Swablu": {
+      "specialty": "Berries",
+      "base_frequency": 3600,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Altaria": {
+      "specialty": "Berries",
+      "base_frequency": 3600,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Trapinch": {
+      "specialty": "Berries",
+      "base_frequency": 4680,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Vibrava": {
+      "specialty": "Berries",
+      "base_frequency": 4680,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Flygon": {
+      "specialty": "Berries",
+      "base_frequency": 4680,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Wynaut": {
+      "specialty": "Skills",
+      "base_frequency": 5040,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Spheal": {
+      "specialty": "Berries",
+      "base_frequency": 3720,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Sealeo": {
+      "specialty": "Berries",
+      "base_frequency": 3720,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Walrein": {
+      "specialty": "Berries",
+      "base_frequency": 3720,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Shuppet": {
+      "specialty": "Berries",
+      "base_frequency": 4320,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Banette": {
+      "specialty": "Berries",
+      "base_frequency": 4320,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Onix": {
+      "specialty": "Berries",
+      "base_frequency": 5520,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Steelix": {
+      "specialty": "Berries",
+      "base_frequency": 5520,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Delibird": {
+      "specialty": "Ingredients",
+      "base_frequency": 4200,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Snover": {
+      "specialty": "Ingredients",
+      "base_frequency": 4920,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Abomasnow": {
+      "specialty": "Ingredients",
+      "base_frequency": 4920,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Turtwig": {
+      "specialty": "Berries",
+      "base_frequency": 4320,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Grotle": {
+      "specialty": "Berries",
+      "base_frequency": 4320,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Torterra": {
+      "specialty": "Berries",
+      "base_frequency": 4320,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Chimchar": {
+      "specialty": "Skills",
+      "base_frequency": 3840,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Monferno": {
+      "specialty": "Skills",
+      "base_frequency": 3840,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Infernape": {
+      "specialty": "Skills",
+      "base_frequency": 3840,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Piplup": {
+      "specialty": "Ingredients",
+      "base_frequency": 4440,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Prinplup": {
+      "specialty": "Ingredients",
+      "base_frequency": 4440,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Empoleon": {
+      "specialty": "Ingredients",
+      "base_frequency": 4440,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Budew": {
+      "specialty": "Ingredients",
+      "base_frequency": 4320,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Roselia": {
+      "specialty": "Ingredients",
+      "base_frequency": 4320,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Roserade": {
+      "specialty": "Ingredients",
+      "base_frequency": 4320,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Mime Jr.": {
+      "specialty": "Ingredients",
+      "base_frequency": 4680,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Mr. Mime": {
+      "specialty": "Ingredients",
+      "base_frequency": 4680,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Chingling": {
+      "specialty": "Skills",
+      "base_frequency": 4320,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Chimecho": {
+      "specialty": "Skills",
+      "base_frequency": 4320,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Happiny": {
+      "specialty": "Skills",
+      "base_frequency": 5040,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Chansey": {
+      "specialty": "Skills",
+      "base_frequency": 5040,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Blissey": {
+      "specialty": "Skills",
+      "base_frequency": 5040,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Bonsly": {
+      "specialty": "Skills",
+      "base_frequency": 5400,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Munchlax": {
+      "specialty": "Berries",
+      "base_frequency": 5040,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Mantyke": {
+      "specialty": "Skills",
+      "base_frequency": 3840,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Mantine": {
+      "specialty": "Skills",
+      "base_frequency": 3840,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Riolu": {
+      "specialty": "Skills",
+      "base_frequency": 3480,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Lucario": {
+      "specialty": "Skills",
+      "base_frequency": 3480,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Croagunk": {
+      "specialty": "Ingredients",
+      "base_frequency": 3960,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Toxicroak": {
+      "specialty": "Ingredients",
+      "base_frequency": 3960,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Togekiss": {
+      "specialty": "Skills",
+      "base_frequency": 4320,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Magnezone": {
+      "specialty": "Skills",
+      "base_frequency": 5100,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Leafeon": {
+      "specialty": "Skills",
+      "base_frequency": 4680,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Glaceon": {
+      "specialty": "Skills",
+      "base_frequency": 4680,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Cleffa": {
+      "specialty": "Berries",
+      "base_frequency": 3720,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Clefairy": {
+      "specialty": "Berries",
+      "base_frequency": 3720,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Clefable": {
+      "specialty": "Berries",
+      "base_frequency": 3720,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Snivy": {
+      "specialty": "Berries",
+      "base_frequency": 4320,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Servine": {
+      "specialty": "Berries",
+      "base_frequency": 4320,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Serperior": {
+      "specialty": "Berries",
+      "base_frequency": 4320,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Tepig": {
+      "specialty": "Berries",
+      "base_frequency": 4320,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Pignite": {
+      "specialty": "Berries",
+      "base_frequency": 4320,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Emboar": {
+      "specialty": "Berries",
+      "base_frequency": 4320,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Oshawott": {
+      "specialty": "Ingredients",
+      "base_frequency": 4320,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Dewott": {
+      "specialty": "Ingredients",
+      "base_frequency": 4320,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Samurott": {
+      "specialty": "Ingredients",
+      "base_frequency": 4320,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Lillipup": {
+      "specialty": "Berries",
+      "base_frequency": 3120,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Herdier": {
+      "specialty": "Berries",
+      "base_frequency": 3120,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Stoutland": {
+      "specialty": "Berries",
+      "base_frequency": 3120,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Dwebble": {
+      "specialty": "Berries",
+      "base_frequency": 3960,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Crustle": {
+      "specialty": "Berries",
+      "base_frequency": 3960,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Foongus": {
+      "specialty": "Ingredients",
+      "base_frequency": 4320,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Amoonguss": {
+      "specialty": "Ingredients",
+      "base_frequency": 4320,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Litwick": {
+      "specialty": "Skills",
+      "base_frequency": 4680,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Lampent": {
+      "specialty": "Skills",
+      "base_frequency": 4680,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Chandelure": {
+      "specialty": "Skills",
+      "base_frequency": 4680,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Chespin": {
+      "specialty": "Berries",
+      "base_frequency": 3840,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Quilladin": {
+      "specialty": "Berries",
+      "base_frequency": 3840,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Chesnaught": {
+      "specialty": "Berries",
+      "base_frequency": 3840,
+      "berry": null,
+      "berry_value": 1.15,
+      "ingredient_rate": 0.16,
+      "skill_rate": 0.02,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Fennekin": {
+      "specialty": "Skills",
+      "base_frequency": 4680,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Braixen": {
+      "specialty": "Skills",
+      "base_frequency": 4680,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Delphox": {
+      "specialty": "Skills",
+      "base_frequency": 4680,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Froakie": {
+      "specialty": "Ingredients",
+      "base_frequency": 4080,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Frogadier": {
+      "specialty": "Ingredients",
+      "base_frequency": 4080,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Greninja": {
+      "specialty": "Ingredients",
+      "base_frequency": 4080,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.27,
+      "skill_rate": 0.018,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Dedenne": {
+      "specialty": "Skills",
+      "base_frequency": 3600,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    },
+    "Sylveon": {
+      "specialty": "Skills",
+      "base_frequency": 4680,
+      "berry": null,
+      "berry_value": 1.0,
+      "ingredient_rate": 0.18,
+      "skill_rate": 0.035,
+      "carry_limit": null,
+      "main_skill": null,
+      "field_provenance": {
+        "specialty": "pokemon.py",
+        "base_frequency": "pokemon.py",
+        "production_rates": "role defaults pending reviewed species data"
+      }
+    }
+  }
+}
