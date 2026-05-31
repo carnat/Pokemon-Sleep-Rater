@@ -18,6 +18,12 @@ MCP_URL = os.environ.get(
 
 HEALTH_URL = MCP_URL.rsplit("/mcp", 1)[0] + "/health"
 
+# Browser-like User-Agent to avoid Cloudflare Bot Fight / WAF blocks (error 1010).
+USER_AGENT = (
+    "Mozilla/5.0 (compatible; PokemonSleepMCP/1.0; "
+    "+https://github.com/carnat/Pokemon-Sleep-Rater)"
+)
+
 
 def post_mcp(payload: dict) -> dict:
     """Send a JSON-RPC request to the MCP endpoint."""
@@ -25,7 +31,10 @@ def post_mcp(payload: dict) -> dict:
     req = urllib.request.Request(
         MCP_URL,
         data=data,
-        headers={"Content-Type": "application/json"},
+        headers={
+            "Content-Type": "application/json",
+            "User-Agent": USER_AGENT,
+        },
         method="POST",
     )
     try:
@@ -41,7 +50,9 @@ def post_mcp(payload: dict) -> dict:
 def test_health():
     """Verify /health reports cloudflare-worker-mcp."""
     print(f"[health] GET {HEALTH_URL}")
-    req = urllib.request.Request(HEALTH_URL, method="GET")
+    req = urllib.request.Request(
+        HEALTH_URL, method="GET", headers={"User-Agent": USER_AGENT}
+    )
     with urllib.request.urlopen(req, timeout=10) as resp:
         data = json.loads(resp.read())
     assert data.get("status") == "ok", f"Expected status=ok, got {data}"
